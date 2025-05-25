@@ -11,7 +11,7 @@ import static org.awaitility.Awaitility.await;
 class C02StructuredConcurrencyTest extends BaseTest {
     @Test
     @Timeout(5)
-    void resourcesShouldBeBookedInParallel() {
+    void resourcesShouldBeBookedInParallel() throws Exception {
         //given
         Resource hotel = Resource.builder().name("Hotel").timeout(Duration.ofSeconds(2)).build();
         Resource flight = Resource.builder().name("Flight").timeout(Duration.ofSeconds(3)).build();

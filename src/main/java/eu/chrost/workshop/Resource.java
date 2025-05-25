@@ -1,23 +1,21 @@
 package eu.chrost.workshop;
 
-import lombok.Builder;
-import lombok.NonNull;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-
 import java.time.Duration;
+import java.util.Objects;
 
-@Builder
-@Slf4j
 class Resource {
-    @NonNull
-    private final String name;
-    @Builder.Default
-    private final Duration timeout = Duration.ZERO;
-    @Builder.Default
-    private final boolean failing = false;
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Resource.class);
 
-    @SneakyThrows
+    public Resource(String name, Duration timeout, boolean failing) {
+        this.name = name;
+        this.timeout = timeout;
+        this.failing = failing;
+    }
+
+    private final String name;
+    private final Duration timeout;
+    private final boolean failing;
+
     public String book() {
         log.info("{} booking started", name);
         try {
@@ -34,4 +32,35 @@ class Resource {
         return String.format("%s booked", name);
     }
 
+    public static class Builder {
+        private String name;
+        private Duration timeout = Duration.ZERO;
+        private boolean failing = false;
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder timeout(Duration timeout) {
+            this.timeout = timeout;
+            return this;
+        }
+
+        public Builder failing(boolean failing) {
+            this.failing = failing;
+            return this;
+        }
+
+        public Resource build() {
+            Objects.requireNonNull(name, "name must not be null");
+            Objects.requireNonNull(timeout, "timeout must not be null");
+            return new Resource(name, timeout, failing);
+        }
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
 }
+
