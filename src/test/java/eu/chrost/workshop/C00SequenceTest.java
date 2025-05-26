@@ -8,7 +8,7 @@ import java.time.Duration;
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C00SequenceTest extends BaseTest {
+class C00SequenceTest extends BaseTest<String> {
     @Test
     @Timeout(5)
     void resourcesShouldBeBookedSequentially() {

@@ -5,21 +5,21 @@ import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-abstract class BaseTest {
-    protected AtomicReference<String> result = new AtomicReference<>();
+abstract class BaseTest<T> {
+    protected AtomicReference<T> result = new AtomicReference<>();
     protected AtomicReference<Throwable> error = new AtomicReference<>();
 
-    protected void getAsyncResult(Supplier<String> action) {
-        new Thread(() -> {
+    protected void getAsyncResult(Supplier<T> action) {
+        Thread.ofVirtual().start(() -> {
             try {
                 result.set(action.get());
             } catch (Throwable t) {
                 error.set(t);
             }
-        }).start();
+        });
     }
 
-    protected void assertResult(String expectedResult) {
+    protected void assertResult(T expectedResult) {
         assertThat(result.get()).isEqualTo(expectedResult);
     }
 

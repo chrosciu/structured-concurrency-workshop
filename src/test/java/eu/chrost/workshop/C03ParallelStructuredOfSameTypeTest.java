@@ -4,11 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
 import java.time.Duration;
+import java.util.List;
 
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C03ParallelStructuredOfSameTypeTest extends BaseTest {
+class C03ParallelStructuredOfSameTypeTest extends BaseTest<List<String>> {
     @Test
     @Timeout(5)
     void resourcesShouldBeBookedInParallel() {
@@ -21,7 +22,7 @@ class C03ParallelStructuredOfSameTypeTest extends BaseTest {
 
         //then
         await().atLeast(Duration.ofMillis(2500)).atMost(Duration.ofMillis(3500)).untilAsserted(() -> {
-            assertResult("hotel booked,flight booked");
+            assertResult(List.of("hotel booked","flight booked"));
         });
     }
 
