@@ -3,9 +3,9 @@ package eu.chrost.workshop;
 import java.util.concurrent.StructuredTaskScope;
 import java.util.function.Supplier;
 
-class C02StructuredConcurrency {
-    static String book(Resource resourceOne, Resource resourceTwo) {
-        try (var scope = StructuredTaskScope.<String>open()) {
+class C02AwaitAllSuccessfulOrThrow {
+    static String book(Resource<String> resourceOne, Resource<String> resourceTwo) {
+        try (var scope = StructuredTaskScope.open()) {
             Supplier<String> flight  = scope.fork(() -> resourceOne.book());
             Supplier<String> hotel = scope.fork(() -> resourceTwo.book());
             scope.join();

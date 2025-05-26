@@ -12,8 +12,8 @@ class C00NoConcurrencyTest extends BaseTest {
     @Timeout(5)
     void resourcesShouldBeBookedSequentially() {
         //given
-        Resource hotel = Resource.builder().name("Hotel").timeout(Duration.ofSeconds(2)).build();
-        Resource flight = Resource.builder().name("Flight").timeout(Duration.ofSeconds(2)).build();
+        Resource<String> hotel = new Resource.Builder<String>().name("Hotel").result("Hotel booked").timeout(Duration.ofSeconds(2)).build();
+        Resource<String> flight = new Resource.Builder<String>().name("Flight").result("Flight booked").timeout(Duration.ofSeconds(2)).build();
 
         //when
         getAsyncResult(() -> C00NoConcurrency.book(hotel, flight));

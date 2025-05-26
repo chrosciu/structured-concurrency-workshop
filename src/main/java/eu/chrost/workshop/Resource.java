@@ -3,20 +3,22 @@ package eu.chrost.workshop;
 import java.time.Duration;
 import java.util.Objects;
 
-class Resource {
+class Resource<T> {
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Resource.class);
 
-    public Resource(String name, Duration timeout, boolean failing) {
+    public Resource(String name, T result, Duration timeout, boolean failing) {
         this.name = name;
+        this.result = result;
         this.timeout = timeout;
         this.failing = failing;
     }
 
     private final String name;
+    private final T result;
     private final Duration timeout;
     private final boolean failing;
 
-    public String book() {
+    public T book() {
         log.info("{} booking started", name);
         try {
             Thread.sleep(timeout);
@@ -29,38 +31,41 @@ class Resource {
             throw new RuntimeException(String.format("%s booking interrupted", name));
         }
         log.info("{} booking finished", name);
-        return String.format("%s booked", name);
+        return result;
     }
 
-    public static class Builder {
+    static class Builder<T> {
         private String name;
+        private T result;
         private Duration timeout = Duration.ZERO;
         private boolean failing = false;
 
-        public Builder name(String name) {
+        public Builder<T> name(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder timeout(Duration timeout) {
+        public Builder<T> result(T result) {
+            this.result = result;
+            return this;
+        }
+
+        public Builder<T> timeout(Duration timeout) {
             this.timeout = timeout;
             return this;
         }
 
-        public Builder failing(boolean failing) {
+        public Builder<T> failing(boolean failing) {
             this.failing = failing;
             return this;
         }
 
-        public Resource build() {
+        public Resource<T> build() {
             Objects.requireNonNull(name, "name must not be null");
+            Objects.requireNonNull(result, "result must not be null");
             Objects.requireNonNull(timeout, "timeout must not be null");
-            return new Resource(name, timeout, failing);
+            return new Resource<T>(name, result, timeout, failing);
         }
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 }
 

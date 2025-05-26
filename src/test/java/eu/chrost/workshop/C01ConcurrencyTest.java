@@ -14,8 +14,8 @@ class C01ConcurrencyTest extends BaseTest {
     @Timeout(5)
     void resourcesShouldBeBookedInParallel() {
         //given
-        Resource hotel = Resource.builder().name("Hotel").timeout(Duration.ofSeconds(2)).build();
-        Resource flight = Resource.builder().name("Flight").timeout(Duration.ofSeconds(3)).build();
+        Resource<String> hotel = new Resource.Builder<String>().name("Hotel").result("Hotel booked").timeout(Duration.ofSeconds(2)).build();
+        Resource<String> flight = new Resource.Builder<String>().name("Flight").result("Flight booked").timeout(Duration.ofSeconds(3)).build();
 
         //when
         getAsyncResult(() -> C01Concurrency.book(hotel, flight));
@@ -31,8 +31,8 @@ class C01ConcurrencyTest extends BaseTest {
     @Disabled("To be done in the future")
     void errorInOneResourceShouldStopBookingImmediately() {
         //given
-        Resource hotel = Resource.builder().name("Hotel").timeout(Duration.ofSeconds(3)).build();
-        Resource flight = Resource.builder().name("Flight").timeout(Duration.ofSeconds(1)).failing(true).build();
+        Resource<String> hotel = new Resource.Builder<String>().name("Hotel").result("Hotel booked").timeout(Duration.ofSeconds(3)).build();
+        Resource<String> flight = new Resource.Builder<String>().name("Flight").result("Flight booked").timeout(Duration.ofSeconds(1)).failing(true).build();
         AtomicReference<Throwable> throwable = new AtomicReference<>();
 
         //when
