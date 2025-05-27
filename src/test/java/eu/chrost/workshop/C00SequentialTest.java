@@ -8,7 +8,7 @@ import java.time.Duration;
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C00SequenceTest extends BaseTest<String> {
+class C00SequentialTest extends BaseTest<String> {
     @Test
     @Timeout(5)
     void resourcesShouldBeBookedSequentially() {
@@ -17,7 +17,7 @@ class C00SequenceTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
 
         //when
-        getAsyncResult(() -> C00Sequence.runInSequence(hotel, flight));
+        getAsyncResult(() -> C00Sequential.runInSequence(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(3500)).atMost(Duration.ofMillis(4500)).untilAsserted(() -> {
