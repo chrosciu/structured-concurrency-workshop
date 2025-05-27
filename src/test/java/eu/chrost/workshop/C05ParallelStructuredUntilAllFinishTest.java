@@ -17,7 +17,7 @@ class C05ParallelStructuredUntilAllFinishTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(3));
 
         //when
-        getAsyncResult(() -> C05ParallelStructuredUntilAllFinish.runInParallelStructuredUntilAllFinish(hotel, flight));
+        getAsyncResult(() -> C05ParallelStructuredUntilAllFinish.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(2500)).atMost(Duration.ofMillis(3500)).untilAsserted(() -> {
@@ -33,7 +33,7 @@ class C05ParallelStructuredUntilAllFinishTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
 
         //when
-        getAsyncResult(() -> C05ParallelStructuredUntilAllFinish.runInParallelStructuredUntilAllFinish(hotel, flight));
+        getAsyncResult(() -> C05ParallelStructuredUntilAllFinish.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {

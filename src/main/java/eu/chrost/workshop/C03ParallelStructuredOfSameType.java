@@ -6,7 +6,7 @@ import java.util.concurrent.StructuredTaskScope;
 
 class C03ParallelStructuredOfSameType {
     @SafeVarargs
-    static <T> List<T> runInParallelStructuredOfSameType(Action<T>... actions) {
+    static <T> List<T> run(Action<T>... actions) {
         try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<T>allSuccessfulOrThrow())) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));

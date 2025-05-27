@@ -17,7 +17,7 @@ class C00SequentialTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
 
         //when
-        getAsyncResult(() -> C00Sequential.runInSequence(hotel, flight));
+        getAsyncResult(() -> C00Sequential.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(3500)).atMost(Duration.ofMillis(4500)).untilAsserted(() -> {

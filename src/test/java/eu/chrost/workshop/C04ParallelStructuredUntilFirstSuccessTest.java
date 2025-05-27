@@ -17,7 +17,7 @@ class C04ParallelStructuredUntilFirstSuccessTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
 
         //when
-        getAsyncResult(() -> C04ParallelStructuredUntilFirstSuccess.runInParallelStructuredUntilFirstSuccess(hotel, flight));
+        getAsyncResult(() -> C04ParallelStructuredUntilFirstSuccess.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {
@@ -33,7 +33,7 @@ class C04ParallelStructuredUntilFirstSuccessTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
 
         //when
-        getAsyncResult(() -> C04ParallelStructuredUntilFirstSuccess.runInParallelStructuredUntilFirstSuccess(hotel, flight));
+        getAsyncResult(() -> C04ParallelStructuredUntilFirstSuccess.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {
@@ -49,7 +49,7 @@ class C04ParallelStructuredUntilFirstSuccessTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2), true);
 
         //when
-        getAsyncResult(() -> C04ParallelStructuredUntilFirstSuccess.runInParallelStructuredUntilFirstSuccess(hotel, flight));
+        getAsyncResult(() -> C04ParallelStructuredUntilFirstSuccess.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {

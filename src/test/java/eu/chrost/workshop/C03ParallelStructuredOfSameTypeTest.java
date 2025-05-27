@@ -18,7 +18,7 @@ class C03ParallelStructuredOfSameTypeTest extends BaseTest<List<String>> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(3));
 
         //when
-        getAsyncResult(() -> C03ParallelStructuredOfSameType.runInParallelStructuredOfSameType(hotel, flight));
+        getAsyncResult(() -> C03ParallelStructuredOfSameType.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(2500)).atMost(Duration.ofMillis(3500)).untilAsserted(() -> {
@@ -34,7 +34,7 @@ class C03ParallelStructuredOfSameTypeTest extends BaseTest<List<String>> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(1), true);
 
         //when
-        getAsyncResult(() -> C03ParallelStructuredOfSameType.runInParallelStructuredOfSameType(hotel, flight));
+        getAsyncResult(() -> C03ParallelStructuredOfSameType.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(500)).atMost(Duration.ofMillis(1500)).untilAsserted(() -> {
