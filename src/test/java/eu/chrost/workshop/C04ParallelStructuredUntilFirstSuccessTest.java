@@ -11,7 +11,7 @@ import static org.awaitility.Awaitility.await;
 class C04ParallelStructuredUntilFirstSuccessTest extends BaseTest<String> {
     @Test
     @Timeout(5)
-    void resourcesShouldBeBookedInParallelAndTheFastestReturned() {
+    void actionsShouldBeRunInParallelAndResultOfFastestOneShouldBeReturned() {
         //given
         Action<String> hotel = new Action<>("booking hotel", "hotel booked", ofSeconds(3));
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
@@ -27,7 +27,7 @@ class C04ParallelStructuredUntilFirstSuccessTest extends BaseTest<String> {
 
     @Test
     @Timeout(5)
-    void errorInOneResourceShouldNotStopBookingImmediately() {
+    void errorInOneActionShouldNotCancelRest() {
         //given
         Action<String> hotel = new Action<>("booking hotel", "hotel booked", ofSeconds(1), true);
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
@@ -43,7 +43,7 @@ class C04ParallelStructuredUntilFirstSuccessTest extends BaseTest<String> {
 
     @Test
     @Timeout(5)
-    void errorInAllResourcesShouldReturnError() {
+    void errorInAllActionsShouldReturnError() {
         //given
         Action<String> hotel = new Action<>("booking hotel", "hotel booked", ofSeconds(1), true);
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2), true);

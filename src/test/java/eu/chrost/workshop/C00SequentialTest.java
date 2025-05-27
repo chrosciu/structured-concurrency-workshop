@@ -11,7 +11,7 @@ import static org.awaitility.Awaitility.await;
 class C00SequentialTest extends BaseTest<String> {
     @Test
     @Timeout(5)
-    void resourcesShouldBeBookedSequentially() {
+    void actionsShouldBeRunSequentially() {
         //given
         Action<String> hotel = new Action<>("booking hotel", "hotel booked", ofSeconds(2));
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));

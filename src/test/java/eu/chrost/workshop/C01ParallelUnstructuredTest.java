@@ -12,7 +12,7 @@ import static org.awaitility.Awaitility.await;
 class C01ParallelUnstructuredTest extends BaseTest<String> {
     @Test
     @Timeout(5)
-    void resourcesShouldBeBookedInParallel() {
+    void actionsShouldBeRunInParallel() {
         //given
         Action<String> hotel = new Action<>("booking hotel", "hotel booked", ofSeconds(2));
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(3));
@@ -29,7 +29,7 @@ class C01ParallelUnstructuredTest extends BaseTest<String> {
     @Test
     @Timeout(5)
     @Disabled("To be done in the future")
-    void errorInOneResourceShouldStopBookingImmediately() {
+    void errorInOneActionShouldCancelAllImmediately() {
         //given
         Action<String> hotel = new Action<>("booking hotel", "hotel booked", ofSeconds(3));
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(1), true);
