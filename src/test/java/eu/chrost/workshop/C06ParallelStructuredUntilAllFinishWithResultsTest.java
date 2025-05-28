@@ -9,7 +9,7 @@ import java.util.List;
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C06Test extends BaseTest<List<String>> {
+class C06ParallelStructuredUntilAllFinishWithResultsTest extends BaseTest<List<String>> {
     @Test
     @Timeout(5)
     void actionsShouldBeRunInParallel() {
