@@ -15,6 +15,12 @@ Osoby ambitne mogą także spróbować napisać testy jednostkowe weryfikujące 
 - JDK 25 (do pobrania ze strony https://jdk.java.net/25/ lub poprzez wybrany manager pakietów - np. SDKMAN)
 - IntelliJ IDEA (wystarczy wersja Community)
 
+## Dokumentacja
+
+- https://openjdk.org/jeps/505
+- https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.html
+- [slajdy w pdf - TODO]
+
 ## Zadanie 1 - coś na ząb :)
 
 Żaden grill nie może obyć się bez dobrego jedzenia, dlatego też pierwsza z zaproszonych osób - Alicja otrzymała zadanie przygotowania trzech potraw:
