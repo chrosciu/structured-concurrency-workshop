@@ -27,7 +27,7 @@ class UntilAllFinishWithSuccessfulResultsJoiner<T> implements StructuredTaskScop
 class C06ParallelStructuredUntilAllFinishWithSuccessfulResults {
     @SafeVarargs
     static <T> List<T> run(Action<T>... actions) {
-        try (var scope = StructuredTaskScope.open(new UntilAllFinishWithSuccessfulResultsJoiner<T>())) {
+        try (var scope= StructuredTaskScope.open(new UntilAllFinishWithSuccessfulResultsJoiner<T>())) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));
             var results = scope.join();

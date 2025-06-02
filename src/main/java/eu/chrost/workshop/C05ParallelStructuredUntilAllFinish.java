@@ -4,7 +4,7 @@ import java.util.concurrent.StructuredTaskScope;
 
 class C05ParallelStructuredUntilAllFinish {
     static <T, U>String run(Action<T> actionOne, Action<U> actionTwo) {
-        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.awaitAll())) {
+        try (var scope= StructuredTaskScope.open(StructuredTaskScope.Joiner.awaitAll())) {
             StructuredTaskScope.Subtask<T> subtaskOne = scope.fork(() -> actionOne.run());
             StructuredTaskScope.Subtask<U> subtaskTwo = scope.fork(() -> actionTwo.run());
             scope.join();

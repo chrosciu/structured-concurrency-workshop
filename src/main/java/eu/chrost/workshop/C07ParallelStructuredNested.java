@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 class C07ParallelStructuredNested {
     static <T> Stream<T> run(ActionNode<T> node) {
-        try (var scope = StructuredTaskScope.open(
+        try (var scope= StructuredTaskScope.open(
                 StructuredTaskScope.Joiner.<Stream<T>>allSuccessfulOrThrow(),
                 configuration -> configuration
                         .withName(node.name())

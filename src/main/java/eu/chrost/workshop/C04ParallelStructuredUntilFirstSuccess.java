@@ -6,7 +6,7 @@ import java.util.concurrent.StructuredTaskScope;
 class C04ParallelStructuredUntilFirstSuccess {
     @SafeVarargs
     static <T> T run(Action<T>... actions) {
-        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<T>anySuccessfulResultOrThrow())) {
+        try (var scope= StructuredTaskScope.open(StructuredTaskScope.Joiner.<T>anySuccessfulResultOrThrow())) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));
             var firstResult = scope.join();
