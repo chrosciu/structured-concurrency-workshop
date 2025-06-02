@@ -26,4 +26,8 @@ abstract class BaseTest<T> {
     protected void assertError(String expectedErrorMessage) {
         assertThat(error.get()).hasRootCauseMessage(expectedErrorMessage);
     }
+
+    protected void assertErrorType(Class<?> errorClazz) {
+        assertThat(error.get()).isInstanceOf(errorClazz);
+    }
 }

@@ -9,9 +9,9 @@ class C04ParallelStructuredUntilFirstSuccess {
         try (var scope= StructuredTaskScope.open(StructuredTaskScope.Joiner.<T>anySuccessfulResultOrThrow())) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));
-            var firstResult = scope.join();
+            var firstResult= scope.join();
             return firstResult;
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

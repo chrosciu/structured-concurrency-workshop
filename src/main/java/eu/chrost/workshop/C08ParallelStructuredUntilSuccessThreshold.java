@@ -28,13 +28,13 @@ class C08ParallelStructuredUntilSuccessThreshold {
                 StructuredTaskScope.Joiner.<T>allUntil(new UntilSuccessThreshold<>(successThreshold)))) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));
-            var subtasksStream = scope.join();
+            var subtasksStream= scope.join();
             return subtasksStream
                     .filter(stringSubtask -> stringSubtask.state()
                             == StructuredTaskScope.Subtask.State.SUCCESS)
                     .map(StructuredTaskScope.Subtask::get)
                     .toList();
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

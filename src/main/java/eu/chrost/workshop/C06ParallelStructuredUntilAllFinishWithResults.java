@@ -30,7 +30,7 @@ class C06ParallelStructuredUntilAllFinishWithSuccessfulResults {
         try (var scope= StructuredTaskScope.open(new UntilAllFinishWithSuccessfulResultsJoiner<T>())) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));
-            var results = scope.join();
+            var results= scope.join();
             return results.toList();
         } catch (Exception e) {
             throw new RuntimeException(e);

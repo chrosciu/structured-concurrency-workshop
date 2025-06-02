@@ -9,7 +9,7 @@ class C05ParallelStructuredUntilAllFinish {
             StructuredTaskScope.Subtask<U> subtaskTwo = scope.fork(() -> actionTwo.run());
             scope.join();
             return String.join(",", getSubtaskResultAsString(subtaskOne), getSubtaskResultAsString(subtaskTwo));
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

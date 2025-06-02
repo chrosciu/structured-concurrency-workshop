@@ -19,8 +19,7 @@ class C99Observability {
                 StructuredTaskScope.Joiner.<String>allSuccessfulOrThrow(),
                 config -> config
                         .withName("travel")
-                        .withThreadFactory(java.lang.Thread.ofVirtual().name("travel" + "-", 0).factory())
-        )) {
+                        .withThreadFactory(java.lang.Thread.ofVirtual().name("travel" + "-", 0).factory()))) {
             travelScope.fork(() -> bookHotel());
             travelScope.fork(() -> bookCar());
             travelScope.fork(() -> bookFlight());

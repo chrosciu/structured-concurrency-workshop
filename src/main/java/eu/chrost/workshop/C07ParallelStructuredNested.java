@@ -13,10 +13,10 @@ class C07ParallelStructuredNested {
         )) {
             node.actions().forEach(action -> scope.fork(() -> Stream.of(action.run())));
             node.childNodes().forEach(an -> scope.fork(() -> run(an)));
-            var subtasksResults = scope.join()
+            var subtasksResults= scope.join()
                     .flatMap(StructuredTaskScope.Subtask::get);
             return subtasksResults;
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

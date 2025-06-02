@@ -10,7 +10,7 @@ class C02ParallelStructured {
             Supplier<U> resultTwo = scope.fork(() -> actionTwo.run());
             scope.join();
             return String.join(",", resultOne.get().toString(), resultTwo.get().toString());
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
