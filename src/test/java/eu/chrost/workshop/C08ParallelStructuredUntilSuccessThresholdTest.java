@@ -16,15 +16,15 @@ class C08ParallelStructuredUntilSuccessThresholdTest extends BaseTest<List<Strin
         //given
         Action<String> hotel = new Action<>("booking hotel", "hotel booked", ofSeconds(2));
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(3));
-        Action<String> car = new Action<>("booking car", "car booked", ofSeconds(1));
+        Action<String> car = new Action<>("booking car", "car booked", ofSeconds(1), true);
         Action<String> table = new Action<>("booking table", "table booked", ofSeconds(4));
 
         //when
         getAsyncResult(() -> C08ParallelStructuredUntilSuccessThreshold.run(2,hotel, flight, car, table));
 
         //then
-        await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {
-            assertResult(List.of("hotel booked","car booked"));
+        await().atLeast(Duration.ofMillis(2500)).atMost(Duration.ofMillis(3500)).untilAsserted(() -> {
+            assertResult(List.of("hotel booked","flight booked"));
         });
     }
 }
