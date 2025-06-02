@@ -4,7 +4,7 @@ W ramach warsztatu ze structured concurrency zajmiemy się modelowaniem przygoto
 
 Przygotowanie takiego przyjęcia jest skomplikowanym procesem, dlatego też podzielimy go na prostsze etapy. W każdym z nich skorzystamy z nieco innego typu `Joiner`-a dla `StructuredTaskScope`.
 
-Do zasymulowania poszczególnych etapów przygotowa można skorzystać z gotowej klasy `Action`, natomiast oczywiście zrobienie tego na własną rękę i puszczenie wodzy fantazji jest jak najbardziej mile widziane :)
+Do zasymulowania poszczególnych etapów przygotowan można skorzystać z gotowej klasy `Action`, natomiast oczywiście zrobienie tego na własną rękę i puszczenie wodzy fantazji jest jak najbardziej mile widziane :)
 
 Mile widziane jest logowanie na konsolę (wraz z timestampami) tego co dzieje się w aplikacji (tak aby np. było widać to że rozpoczyna się przygotowanie sałatki). 
 
