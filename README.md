@@ -1,66 +1,63 @@
-# Opis warsztatu
+# Workshop Description
 
-W ramach warsztatu ze structured concurrency zajmiemy się modelowaniem przygotowan do grill party. 
+During the structured concurrency workshop, the preparations for a grill party will be modeled.
 
-Przygotowanie takiego przyjęcia jest skomplikowanym procesem, dlatego też podzielimy go na prostsze etapy. W każdym z nich skorzystamy z nieco innego typu `Joiner`-a dla `StructuredTaskScope`.
+Such an event is a complex process, so it will be divided into simpler stages. In each of them, a slightly different type of `Joiner` for `StructuredTaskScope` will be used.
 
-Do zasymulowania poszczególnych etapów przygotowan można skorzystać z gotowej klasy `Action`, natomiast oczywiście zrobienie tego na własną rękę i puszczenie wodzy fantazji jest jak najbardziej mile widziane :)
+To simulate individual preparation stages, the provided `Action` class can be used, but creating custom ones and letting imagination run wild is highly encouraged :)
 
-Mile widziane jest logowanie na konsolę (wraz z timestampami) tego co dzieje się w aplikacji (tak aby np. było widać to że rozpoczyna się przygotowanie sałatki). 
+It is recommended that what happens in the application is logged to the console (with timestamps), e.g., to show when the salad preparation starts.
 
-Osoby ambitne mogą także spróbować napisać testy jednostkowe weryfikujące działanie symulacji - podobne do tych jakie istnieją już w repozytorium.
+Ambitious participants are encouraged to write unit tests to verify the simulation's behavior—similar to those already present in the repository.
 
-## Niezbędne oprogramowanie
+## Required Software
 
-- JDK 25 (do pobrania ze strony https://jdk.java.net/25/ lub poprzez wybrany manager pakietów - np. SDKMAN)
-- IntelliJ IDEA (wystarczy wersja Community)
+- JDK 25 (available at https://jdk.java.net/25/ or via a package manager like SDKMAN)
+- IntelliJ IDEA (Community version is sufficient)
 
-## Dokumentacja
+## Documentation
 
 - https://openjdk.org/jeps/505
 - https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.html
-- [slajdy w pdf - TODO]
+- [slides in PDF - TODO]
 
-## Zadanie 1 - coś na ząb :)
+## Task 1 - Something to snack on :)
 
-Żaden grill nie może obyć się bez dobrego jedzenia, dlatego też pierwsza z zaproszonych osób - Alicja otrzymała zadanie przygotowania trzech potraw:
-- sałatki
-- pizzy
-- frytek
+No grill party can happen without good food, so the first guest—Alice—was tasked with preparing three dishes:
+- salad
+- pizza
+- fries
 
-Teoretycznie te trzy potrawy da się przygotować równolegle (tak wiem - to tylko teoria :)) - zamodeluj zatem taki proces. Oczywiście aby dało się go przetestować przyjmij że przygotowanie każdej z powyższych potrwa zajmuje maksymalnie 10 sekund (ha ha ha)
+Theoretically, these three dishes can be prepared in parallel (yes, I know—just theoretically :))—so such a process should be modeled. To make it testable, it should be assumed that preparing each of the above takes a maximum of 10 seconds (ha ha ha).
 
-W ramach zadania spróbuj zasymulować także sytuację, w której nie uda się przygotować którejś z tych potraw (np. frytki ulegną przypaleniu) - przyjmijmy wtedy dwa możliwe warianty działania:
-- niepowodzenie przy którejkolwiek potrawie niweczy cały proces (albo będa trzy dania albo nic) - w takiej sytuacji oczywiście przerywamy przygotowanie pozostałych
-- lub też wydajemy te dania, które udało się dokonczyć
+As part of the task, a situation where one of the dishes cannot be prepared (e.g., the fries get burned) should also be simulated. Two possible scenarios should be considered:
+- failure to prepare any dish ruins the entire process (either all three dishes are ready, or none)—in this case, the remaining dishes should be stopped from being prepared.
+- or the dishes that were successfully completed should be served.
 
-## Zadanie 2 - bez picia nie ma życia :)
+## Task 2 - No drinks, no life :)
 
-Mały disclaimer: absolutnie nie chodzi tutaj o alkohol :) Ale jak można się spodziewać - nie da się zrobić grilla w wersji wyłącznie "na sucho" - niezbędne nam bedą napoje ! 
+A small disclaimer: this is absolutely not about alcohol :) But as might be expected, a grill party cannot happen "dry"—drinks are needed!
 
-Ich dostarczeniem zajmie się drugi zaproszony gość - Bob. Jest on niesamowicie leniwą (i skąpą) osobą dlatego postanowił za wiele nie wydać a przy okazji niewiele się narobić.
-W tym celu postanowił wysłać trójkę swoich dzieci - każde do innego sklepu:
-- pierwsze dziecko miało za zadanię kupić Coca-Colę
-- drugie - Fantę
-- trzecie - Sprite
+Their delivery will be handled by the second guest—Bob. He is incredibly lazy (and stingy), so it was decided not to spend much money and to do as little as possible.
+To achieve this, it was decided to send his three children—each to a different store:
+- the first child was tasked with buying Coca-Cola
+- the second—Fanta
+- the third—Sprite
 
-Przyjął także założenie, iż to dziecko któremu uda się jako pierwszemu kupić napój da znać pozostałym - by wracały do domu bez zrobienia zakupów (po co bowiem wydawać tyle pieniędzy - jeden napój wystarczy dla wszystkich gości :))
+It was also assumed that the child who manages to buy a drink first will notify the others to return home without making purchases (why spend so much money—one drink is enough for all the guests :)).
 
-Twoim zadaniem jest zamodelowanie opisanego powyżej procesu. 
+The process described above should be modeled.
 
-W ramach zadania spróbuj także zasymulować sytuację, w której zakładamy maksymalny czas na dokonanie zakupu - jeżeli żadnemu dziecku nie uda się w tym czasie kupić napoju to zgłaszamy błąd.
+As part of the task, a situation where a maximum time is set for making the purchase should also be simulated—if none of the children manage to buy a drink within this time, an error should be reported.
 
-## Zadanie 3 - jeden grill by połączyć ich wszystkich :)
+## Task 3 - One grill to unite them all :)
 
-Zarówno Alicja jak i Bob otrzymali już swoje zadania, natomiast w przypdaku trzeciego gościa - Carol sytuacja jest inna! Jej jedynym zmartwieniem jest dobranie odpowiedniego stroju - co oczywiście jak wiadomo musi swoje potrwać :)
+Both Alice and Bob have already been assigned their tasks, but for the third guest—Carol—the situation is different! Her only concern is choosing the right outfit—which, of course, as is known, takes time :)
 
-Zasymuluj zatem proces docierania wszystkich gości na przyjęcie. 
+The process of all guests arriving at the party should be simulated.
 
-Oczywiście każda z osób wykonuje swoje zadania niezależnie od pozostałych; dodatkwo jeżeli któremukolwiek z gości nie uda się wykonać swojej części pracy całe przyjęcie zostaje anulowane. 
+Of course, each person performs their tasks independently of the others; additionally, if any guest fails to complete their part, the entire party is canceled.
 
-W ramach zadania spróbuj także zasymulować dwa inne scenariusze:
-- aby impreza się rozpoczęła wystarczy że dotrą dwie zaproszone osoby z trzech
-- impreza rozpoczyna się niezależnie od tego czy zaproszonym osobom uda się wykonać swoje zadania, ale czekamy na informacje od każdej z nich czy udało się je wykonać czy też nie
-
-
-
+As part of the task, two other scenarios should also be simulated:
+- the party can start if at least two out of three invited guests arrive.
+- the party starts regardless of whether the invited guests complete their tasks, but information from each of them on whether they succeeded or not is awaited.
