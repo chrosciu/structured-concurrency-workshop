@@ -54,6 +54,8 @@ W ramach zadania spróbuj także zasymulować sytuację, w której zakładamy ma
 
 Zarówno Alicja jak i Bob otrzymali już swoje zadania, natomiast w przypdaku trzeciego gościa - Carol sytuacja jest inna! Jej jedynym zmartwieniem jest dobranie odpowiedniego stroju - co oczywiście jak wiadomo musi swoje potrwać :)
 
+Jednakże dla wszystkich gości sytuacja jest jednakowa - wykonujesz swoje zadania a następnie udajesz się na imprezę
+
 Zasymuluj zatem proces docierania wszystkich gości na przyjęcie. 
 
 Oczywiście każda z osób wykonuje swoje zadania niezależnie od pozostałych; dodatkwo jeżeli któremukolwiek z gości nie uda się wykonać swojej części pracy całe przyjęcie zostaje anulowane. 

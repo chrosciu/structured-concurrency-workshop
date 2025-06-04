@@ -28,36 +28,42 @@ No grill party can happen without good food, so the first guest—Alice—was ta
 - pizza
 - fries
 
-Theoretically, these three dishes can be prepared in parallel (yes, I know—just theoretically :))—so such a process should be modeled. To make it testable, it should be assumed that preparing each of the above takes a maximum of 10 seconds (ha ha ha).
+Theoretically, these three dishes can be prepared in parallel (yes, I know—just theoretically :)).  
 
-As part of the task, a situation where one of the dishes cannot be prepared (e.g., the fries get burned) should also be simulated. Two possible scenarios should be considered:
+**Your task is to simulate this process using structured concurrency**. 
+
+To make it testable, it should be assumed that preparing each of the above takes a maximum of 10 seconds (ha ha ha).
+
+As part of the task, a situation where one of the dishes cannot be prepared (e.g., the fries get burned) should also be modeled. Two possible scenarios should be considered:
 - failure to prepare any dish ruins the entire process (either all three dishes are ready, or none)—in this case, the remaining dishes should be stopped from being prepared.
 - or the dishes that were successfully completed should be served.
 
 ## Task 2 - No drinks, no life :)
 
-A small disclaimer: this is absolutely not about alcohol :) But as might be expected, a grill party cannot happen "dry"—drinks are needed!
+A small disclaimer: this is absolutely not about alcohol :) But as might be expected, a grill party cannot happen "dry"—drinks are definitely needed!
 
-Their delivery will be handled by the second guest—Bob. He is incredibly lazy (and stingy), so it was decided not to spend much money and to do as little as possible.
+Their delivery will be handled by the second guest—Bob. He is incredibly lazy (and stingy), so he decided not to spend much money and to do as little as possible.
 To achieve this, it was decided to send his three children—each to a different store:
-- the first child was tasked with buying Coca-Cola
-- the second—Fanta
-- the third—Sprite
+- the first child was asked to by Coke
+- the second one — Fanta
+- the third one — Sprite
 
 It was also assumed that the child who manages to buy a drink first will notify the others to return home without making purchases (why spend so much money—one drink is enough for all the guests :)).
 
-The process described above should be modeled.
+**Your task is to model the process described above.**
 
-As part of the task, a situation where a maximum time is set for making the purchase should also be simulated—if none of the children manage to buy a drink within this time, an error should be reported.
+As part of the task, a situation where a maximum time is set for making the purchase should also be simulated — if none of the children manage to buy a drink within this time, an error should be reported.
 
 ## Task 3 - One grill to unite them all :)
 
-Both Alice and Bob have already been assigned their tasks, but for the third guest—Carol—the situation is different! Her only concern is choosing the right outfit—which, of course, as is known, takes time :)
+Both Alice and Bob have already been assigned their tasks, but for the third guest—Carol—the situation is different! Her only concern is choosing the right outfit—which, of course, as is known, takes time :) 
 
-The process of all guests arriving at the party should be simulated.
+However, the situation is the same for all guests - you complete your tasks and then head to the party.
+
+**Your task is to simulate the process of guests arrival.**
 
 Of course, each person performs their tasks independently of the others; additionally, if any guest fails to complete their part, the entire party is canceled.
 
-As part of the task, two other scenarios should also be simulated:
+As part of the task, two other scenarios should also be modeled:
 - the party can start if at least two out of three invited guests arrive.
 - the party starts regardless of whether the invited guests complete their tasks, but information from each of them on whether they succeeded or not is awaited.
