@@ -11,8 +11,8 @@ import static eu.chrost.workshop.Utils.tryRun;
 class T01Alice {
     public static void main(String[] args) {
         var alice = new T01Alice();
-        tryRun(alice::prepareAllMeals);
-        tryRun(alice::prepareAsManyMealsAsPossible);
+        tryRun(() -> System.out.println(alice.prepareAllMeals()));
+        tryRun(() -> System.out.println(alice.prepareAsManyMealsAsPossible()));
     }
 
     public List<String> prepareAllMeals() {

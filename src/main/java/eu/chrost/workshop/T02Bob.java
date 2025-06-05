@@ -8,9 +8,9 @@ import static eu.chrost.workshop.Utils.tryRun;
 class T02Bob {
     public static void main(String[] args) {
         var bob = new T02Bob();
-        tryRun(bob::buyDrink);
-        tryRun(() -> bob.buyDrinkWithTimeAttack(Duration.ofMillis(500)));
-        tryRun(() -> bob.buyDrinkWithTimeAttack(Duration.ofMillis(1500)));
+        tryRun(() -> System.out.println(bob.buyDrink()));
+        tryRun(() -> System.out.println(bob.buyDrinkWithTimeAttack(Duration.ofMillis(500))));
+        tryRun(() -> System.out.println(bob.buyDrinkWithTimeAttack(Duration.ofMillis(1500))));
     }
 
     public String buyDrink() {
