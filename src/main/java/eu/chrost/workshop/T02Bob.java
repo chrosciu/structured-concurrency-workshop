@@ -3,24 +3,14 @@ package eu.chrost.workshop;
 import java.time.Duration;
 import java.util.concurrent.StructuredTaskScope;
 
+import static eu.chrost.workshop.Utils.tryRun;
+
 class T02Bob {
     public static void main(String[] args) {
         var bob = new T02Bob();
-        try {
-            System.out.println(bob.buyDrink());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            System.out.println(bob.buyDrinkWithTimeAttack(Duration.ofMillis(500)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            System.out.println(bob.buyDrinkWithTimeAttack(Duration.ofMillis(1500)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        tryRun(bob::buyDrink);
+        tryRun(() -> bob.buyDrinkWithTimeAttack(Duration.ofMillis(500)));
+        tryRun(() -> bob.buyDrinkWithTimeAttack(Duration.ofMillis(1500)));
     }
 
     public String buyDrink() {
