@@ -6,19 +6,13 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.StructuredTaskScope;
 
+import static eu.chrost.workshop.Utils.tryRun;
+
 class T01Alice {
     public static void main(String[] args) {
         var alice = new T01Alice();
-        try {
-            System.out.println(alice.prepareAllMeals());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            System.out.println(alice.prepareAsManyMealsAsPossible());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        tryRun(alice::prepareAllMeals);
+        tryRun(alice::prepareAsManyMealsAsPossible);
     }
 
     public List<String> prepareAllMeals() {
