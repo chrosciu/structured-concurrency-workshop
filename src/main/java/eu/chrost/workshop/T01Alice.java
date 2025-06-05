@@ -19,8 +19,8 @@ class T01Alice {
         try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<String>allSuccessfulOrThrow())) {
             scope.fork(() -> salad.run());
             scope.fork(() -> pizza.run());
-            //scope.fork(() -> fries.run());
-            scope.fork(() -> burnedFries.run());
+            scope.fork(() -> fries.run());
+            //scope.fork(() -> burnedFries.run());
             return scope.join()
                     .map(StructuredTaskScope.Subtask::get)
                     .toList();
