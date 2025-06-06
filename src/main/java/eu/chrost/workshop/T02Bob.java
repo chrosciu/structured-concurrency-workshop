@@ -3,6 +3,7 @@ package eu.chrost.workshop;
 import java.time.Duration;
 import java.util.concurrent.StructuredTaskScope;
 
+import static eu.chrost.workshop.Action.OWNER;
 import static eu.chrost.workshop.Utils.tryRun;
 
 class T02Bob {
@@ -14,32 +15,36 @@ class T02Bob {
     }
 
     public String buyDrink() {
-        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<String>anySuccessfulResultOrThrow())) {
-            scope.fork(() -> coke.run());
-            scope.fork(() -> fanta.run());
-            scope.fork(() -> sprite.run());
-            try {
-                return scope.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        return ScopedValue.where(OWNER, "Bob").call(() -> {
+            try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<String>anySuccessfulResultOrThrow())) {
+                scope.fork(() -> coke.run());
+                scope.fork(() -> fanta.run());
+                scope.fork(() -> sprite.run());
+                try {
+                    return scope.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }
+        });
     }
 
     public String buyDrinkWithTimeAttack(Duration duration) {
-        try (var scope = StructuredTaskScope.open(
-                StructuredTaskScope.Joiner.<String>anySuccessfulResultOrThrow(),
-                configuration -> configuration.withTimeout(duration)
-        )) {
-            scope.fork(() -> coke.run());
-            scope.fork(() -> fanta.run());
-            scope.fork(() -> sprite.run());
-            try {
-                return scope.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        return ScopedValue.where(OWNER, "Bob").call(() -> {
+            try (var scope = StructuredTaskScope.open(
+                    StructuredTaskScope.Joiner.<String>anySuccessfulResultOrThrow(),
+                    configuration -> configuration.withTimeout(duration)
+            )) {
+                scope.fork(() -> coke.run());
+                scope.fork(() -> fanta.run());
+                scope.fork(() -> sprite.run());
+                try {
+                    return scope.join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }
+        });
     }
 
     private Action<String> coke = new Action<>("purchasing Coke", "Coke is purchased", Duration.ofSeconds(2));

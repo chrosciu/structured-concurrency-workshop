@@ -6,6 +6,12 @@ import java.util.Objects;
 record Action<T>(String name, T result, Duration timeout, boolean failing)  {
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Action.class);
 
+    static final ScopedValue<String> OWNER = ScopedValue.newInstance();
+
+    private static String getOwner() {
+        return OWNER.orElse("N/A");
+    }
+
     public Action {
         Objects.requireNonNull(name, "name must not be null");
         Objects.requireNonNull(result, "result must not be null");
@@ -19,18 +25,18 @@ record Action<T>(String name, T result, Duration timeout, boolean failing)  {
     }
 
     public T run() {
-        log.info("Action {} started", name);
+        log.info("[{}] Action {} started", getOwner(), name);
         try {
             Thread.sleep(timeout);
             if (failing) {
-                log.error("Action {} failed", name);
+                log.error("[{}] Action {} failed", getOwner(), name);
                 throw new RuntimeException(String.format("Action %s failed", name));
             }
         } catch (InterruptedException e) {
-            log.error("Action {} interrupted", name);
+            log.error("[{}] Action {} interrupted", getOwner(), name);
             throw new RuntimeException(String.format("Action %s interrupted", name));
         }
-        log.info("Action {} finished", name);
+        log.info("[{}] Action {} finished", getOwner(), name);
         return result;
     }
 }
