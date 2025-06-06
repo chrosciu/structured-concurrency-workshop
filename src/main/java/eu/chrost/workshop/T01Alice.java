@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.StructuredTaskScope;
 
+import static eu.chrost.workshop.Action.OWNER;
 import static eu.chrost.workshop.Utils.tryRun;
 
 class T01Alice {
@@ -16,17 +17,19 @@ class T01Alice {
     }
 
     public List<String> prepareAllMeals() {
-        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<String>allSuccessfulOrThrow())) {
-            scope.fork(() -> salad.run());
-            scope.fork(() -> pizza.run());
-            scope.fork(() -> fries.run());
-            //scope.fork(() -> burnedFries.run());
-            return scope.join()
-                    .map(StructuredTaskScope.Subtask::get)
-                    .toList();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        return ScopedValue.where(OWNER, "Alice").call(() -> {
+            try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<String>allSuccessfulOrThrow())) {
+                scope.fork(() -> salad.run());
+                scope.fork(() -> pizza.run());
+                scope.fork(() -> fries.run());
+                //scope.fork(() -> burnedFries.run());
+                return scope.join()
+                        .map(StructuredTaskScope.Subtask::get)
+                        .toList();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private static class AsManyAsPossibleJoiner implements StructuredTaskScope.Joiner<String, List<String>> {
@@ -47,15 +50,17 @@ class T01Alice {
     }
 
     public List<String> prepareAsManyMealsAsPossible() {
-        try (var scope = StructuredTaskScope.open(new AsManyAsPossibleJoiner())) {
-            scope.fork(() -> salad.run());
-            scope.fork(() -> pizza.run());
-            //scope.fork(() -> fries.run());
-            scope.fork(() -> burnedFries.run());
-            return scope.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        return ScopedValue.where(OWNER, "Alice").call(() -> {
+            try (var scope = StructuredTaskScope.open(new AsManyAsPossibleJoiner())) {
+                scope.fork(() -> salad.run());
+                scope.fork(() -> pizza.run());
+                //scope.fork(() -> fries.run());
+                scope.fork(() -> burnedFries.run());
+                return scope.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private Action<String> salad = new Action<>("preparing salad", "salad is ready", Duration.ofSeconds(1));
