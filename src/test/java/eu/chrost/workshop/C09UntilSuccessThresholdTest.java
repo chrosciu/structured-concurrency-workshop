@@ -9,7 +9,7 @@ import java.util.List;
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C08UntilSuccessThresholdTest extends BaseTest<List<String>> {
+class C09UntilSuccessThresholdTest extends BaseTest<List<String>> {
     @Test
     @Timeout(5)
     void actionsShouldBeRunInParallelUntilSuccessThreshold() {
@@ -20,7 +20,7 @@ class C08UntilSuccessThresholdTest extends BaseTest<List<String>> {
         Action<String> table = new Action<>("booking table", "table booked", ofSeconds(4));
 
         //when
-        getAsyncResult(() -> C08UntilSuccessThreshold.run(2,hotel, flight, car, table));
+        getAsyncResult(() -> C09UntilSuccessThreshold.run(2,hotel, flight, car, table));
 
         //then
         await().atLeast(Duration.ofMillis(2500)).atMost(Duration.ofMillis(3500)).untilAsserted(() -> {

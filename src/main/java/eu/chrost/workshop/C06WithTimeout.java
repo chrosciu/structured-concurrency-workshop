@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.StructuredTaskScope;
 
-class C09WithTimeout {
+class C06WithTimeout {
     @SafeVarargs
     static <T> List<T> run(Duration timeout, Action<T>... actions) {
         try (var scope= StructuredTaskScope.open(

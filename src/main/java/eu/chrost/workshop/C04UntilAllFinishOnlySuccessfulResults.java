@@ -24,7 +24,7 @@ class UntilAllFinishOnlySuccesfulResultsJoiner<T> implements StructuredTaskScope
     }
 }
 
-class C06UntilAllFinishOnlySuccessfulResults {
+class C04UntilAllFinishOnlySuccessfulResults {
     @SafeVarargs
     static <T> List<T> run(Action<T>... actions) {
         try (var scope= StructuredTaskScope.open(new UntilAllFinishOnlySuccesfulResultsJoiner<T>())) {

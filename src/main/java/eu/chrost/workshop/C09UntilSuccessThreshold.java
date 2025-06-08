@@ -21,7 +21,7 @@ class UntilSuccessThresholdPredicate<T> implements Predicate<StructuredTaskScope
     }
 }
 
-class C08UntilSuccessThreshold {
+class C09UntilSuccessThreshold {
     @SafeVarargs
     static <T> List<T> run(int successThreshold, Action<T>... actions) {
         try (var scope= StructuredTaskScope.open(

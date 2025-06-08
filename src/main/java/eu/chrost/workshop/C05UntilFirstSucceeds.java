@@ -3,7 +3,7 @@ package eu.chrost.workshop;
 import java.util.Arrays;
 import java.util.concurrent.StructuredTaskScope;
 
-class C04UntilFirstSucceeds {
+class C05UntilFirstSucceeds {
     @SafeVarargs
     static <T> T run(Action<T>... actions) {
         try (var scope= StructuredTaskScope.open(StructuredTaskScope.Joiner.<T>anySuccessfulResultOrThrow())) {

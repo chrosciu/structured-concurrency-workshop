@@ -8,7 +8,7 @@ import java.time.Duration;
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C04UntilFirstSucceedsTest extends BaseTest<String> {
+class C05UntilFirstSucceedsTest extends BaseTest<String> {
     @Test
     @Timeout(5)
     void actionsShouldBeRunInParallelAndResultOfFastestOneShouldBeReturned() {
@@ -17,7 +17,7 @@ class C04UntilFirstSucceedsTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
 
         //when
-        getAsyncResult(() -> C04UntilFirstSucceeds.run(hotel, flight));
+        getAsyncResult(() -> C05UntilFirstSucceeds.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {
@@ -33,7 +33,7 @@ class C04UntilFirstSucceedsTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2));
 
         //when
-        getAsyncResult(() -> C04UntilFirstSucceeds.run(hotel, flight));
+        getAsyncResult(() -> C05UntilFirstSucceeds.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {
@@ -49,7 +49,7 @@ class C04UntilFirstSucceedsTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(2), true);
 
         //when
-        getAsyncResult(() -> C04UntilFirstSucceeds.run(hotel, flight));
+        getAsyncResult(() -> C05UntilFirstSucceeds.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(1500)).atMost(Duration.ofMillis(2500)).untilAsserted(() -> {

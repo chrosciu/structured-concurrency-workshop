@@ -34,11 +34,21 @@ Theoretically, these three dishes can be prepared in parallel (yes, I know—jus
 
 To make it testable, it should be assumed that preparing each of the above takes a maximum of 10 seconds (ha ha ha).
 
-As part of the task, a situation where one of the dishes cannot be prepared (e.g., the fries get burned) should also be modeled. Two possible scenarios should be considered:
-- failure to prepare any dish ruins the entire process (either all three dishes are ready, or none)—in this case, the remaining dishes should be stopped from being prepared.
-- or the dishes that were successfully completed should be served.
+## Task 2 - Not Everything in Life Goes as Planned
 
-## Task 2 - No drinks, no life :)
+Sometimes even the best chef can have a bad day, and there's nothing that can be done about it!
+
+Modify the code from the previous task so that at least one of the dishes cannot be prepared (e.g., the fries get burned).
+
+Observe what happens to the process of preparing the remaining dishes in such a case.
+
+## Task 3 - Better Something Than Nothing
+
+When the guests are starving, they will be satisfied even with the simplest dish :)
+
+Modify the code from the previous task again to ignore the errors that occur during the preparation of dishes and serve all the dishes that can be successfully prepared.
+
+## Task 4 - No drinks, no life :)
 
 A small disclaimer: this is absolutely not about alcohol :) But as might be expected, a grill party cannot happen "dry"—drinks are definitely needed!
 
@@ -54,7 +64,13 @@ It was also assumed that the child who manages to buy a drink first will notify 
 
 As part of the task, a situation where a maximum time is set for making the purchase should also be simulated — if none of the children manage to buy a drink within this time, an error should be reported.
 
-## Task 3 - One grill to unite them all :)
+## Task 5 - Too late in the day
+
+Everything in life has its time limit, and exceeding it may render further actions meaningless :(
+
+Modify the code from the previous task to set a maximum allowable time for shopping - if none of the children manage to complete their task within this time, the entire process is considered a failure.
+
+## Task 6 - One grill to unite them all :)
 
 Both Alice and Bob have already been assigned their tasks, but for the third guest—Carol—the situation is different! Her only concern is choosing the right outfit—which, of course, as is known, takes time :) 
 
@@ -64,6 +80,14 @@ However, the situation is the same for all guests - you complete your tasks and 
 
 Of course, each person performs their tasks independently of the others; additionally, if any guest fails to complete their part, the entire party is canceled.
 
-As part of the task, two other scenarios should also be modeled:
-- the party can start if at least two out of three invited guests arrive.
-- the party starts regardless of whether the invited guests complete their tasks, but information from each of them on whether they succeeded or not is awaited.
+## Task 7 - Even Bad News Is Better Than None
+
+Not everyone will always manage to complete their tasks and make it to the party, but the most important thing is to let the host know in such a situation!
+
+Modify the code from the previous task to wait until each guest knows whether they managed to arrive or not.
+
+## Task 8 - It Takes Two to Tango :)
+
+Sometimes, for the party to be successful, it is enough for more than one person to show up :)
+
+Modify the code from the previous task again so that the party takes place when at least two out of three people arrive.
