@@ -3,7 +3,7 @@ package eu.chrost.workshop;
 import java.util.concurrent.StructuredTaskScope;
 import java.util.function.Supplier;
 
-class C02ParallelStructured {
+class C02UntilAllSucceed {
     static <T, U>String run(Action<T> actionOne, Action<U> actionTwo) {
         try (var scope= StructuredTaskScope.open()) {
             Supplier<T> resultOne  = scope.fork(() -> actionOne.run());

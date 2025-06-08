@@ -9,7 +9,7 @@ import java.util.concurrent.StructuredTaskScope;
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C02ParallelStructuredTest extends BaseTest<String> {
+class C02UntilAllSucceedTest extends BaseTest<String> {
     @Test
     @Timeout(5)
     void actionsShouldBeRunInParallel() {
@@ -18,7 +18,7 @@ class C02ParallelStructuredTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(3));
 
         //when
-        getAsyncResult(() -> C02ParallelStructured.run(hotel, flight));
+        getAsyncResult(() -> C02UntilAllSucceed.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(2500)).atMost(Duration.ofMillis(3500)).untilAsserted(() -> {
@@ -34,7 +34,7 @@ class C02ParallelStructuredTest extends BaseTest<String> {
         Action<String> flight = new Action<>("booking flight", "flight booked", ofSeconds(1), true);
 
         //when
-        getAsyncResult(() -> C02ParallelStructured.run(hotel, flight));
+        getAsyncResult(() -> C02UntilAllSucceed.run(hotel, flight));
 
         //then
         await().atLeast(Duration.ofMillis(500)).atMost(Duration.ofMillis(1500)).untilAsserted(() -> {

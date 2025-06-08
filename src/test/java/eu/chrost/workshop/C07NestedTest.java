@@ -9,7 +9,7 @@ import java.util.List;
 import static java.time.Duration.ofSeconds;
 import static org.awaitility.Awaitility.await;
 
-class C07ParallelStructuredNestedTest extends BaseTest<List<String>> {
+class C07NestedTest extends BaseTest<List<String>> {
     @Test
     @Timeout(5)
     void actionsShouldBeRunInParallelAndCanBeNested() {
@@ -30,7 +30,7 @@ class C07ParallelStructuredNestedTest extends BaseTest<List<String>> {
         );
 
         //when
-        getAsyncResult(() -> C07ParallelStructuredNested.run(travel).toList());
+        getAsyncResult(() -> C07Nested.run(travel).toList());
 
         //then
         await().atLeast(Duration.ofMillis(2500)).atMost(Duration.ofMillis(3500)).untilAsserted(() -> {
@@ -58,7 +58,7 @@ class C07ParallelStructuredNestedTest extends BaseTest<List<String>> {
         );
 
         //when
-        getAsyncResult(() -> C07ParallelStructuredNested.run(travel).toList());
+        getAsyncResult(() -> C07Nested.run(travel).toList());
 
         //then
         await().atLeast(Duration.ofMillis(500)).atMost(Duration.ofMillis(1500)).untilAsserted(() -> {

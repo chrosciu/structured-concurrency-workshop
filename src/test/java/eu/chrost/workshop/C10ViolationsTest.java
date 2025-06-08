@@ -10,7 +10,7 @@ import static java.time.Duration.ofSeconds;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class C99ViolationsTest {
+class C10ViolationsTest {
 
     @Test
     void closingScopeWithoutJoiningFirstShouldThrowException() {

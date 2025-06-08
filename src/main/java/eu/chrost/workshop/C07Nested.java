@@ -3,7 +3,7 @@ package eu.chrost.workshop;
 import java.util.concurrent.StructuredTaskScope;
 import java.util.stream.Stream;
 
-class C07ParallelStructuredNested {
+class C07Nested {
     static <T> Stream<T> run(ActionNode<T> node) {
         try (var scope= StructuredTaskScope.open(
                 StructuredTaskScope.Joiner.<Stream<T>>allSuccessfulOrThrow(),

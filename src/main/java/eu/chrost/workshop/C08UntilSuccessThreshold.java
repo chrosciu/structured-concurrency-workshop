@@ -6,11 +6,11 @@ import java.util.concurrent.StructuredTaskScope;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
-class UntilSuccessThreshold<T> implements Predicate<StructuredTaskScope.Subtask<? extends T>> {
+class UntilSuccessThresholdPredicate<T> implements Predicate<StructuredTaskScope.Subtask<? extends T>> {
     private final int successThreshold;
     private final AtomicInteger successCount = new AtomicInteger();
 
-    public UntilSuccessThreshold(int successThreshold) {
+    public UntilSuccessThresholdPredicate(int successThreshold) {
         this.successThreshold = successThreshold;
     }
 
@@ -21,11 +21,11 @@ class UntilSuccessThreshold<T> implements Predicate<StructuredTaskScope.Subtask<
     }
 }
 
-class C08ParallelStructuredUntilSuccessThreshold {
+class C08UntilSuccessThreshold {
     @SafeVarargs
     static <T> List<T> run(int successThreshold, Action<T>... actions) {
         try (var scope= StructuredTaskScope.open(
-                StructuredTaskScope.Joiner.<T>allUntil(new UntilSuccessThreshold<>(successThreshold)))) {
+                StructuredTaskScope.Joiner.<T>allUntil(new UntilSuccessThresholdPredicate<>(successThreshold)))) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));
             var subtasksStream= scope.join();

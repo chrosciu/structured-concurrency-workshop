@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.StructuredTaskScope;
 import java.util.stream.Stream;
 
-class UntilAllFinishWithSuccessfulResultsJoiner<T> implements StructuredTaskScope.Joiner<T, Stream<T>> {
+class UntilAllFinishOnlySuccesfulResultsJoiner<T> implements StructuredTaskScope.Joiner<T, Stream<T>> {
     Queue<T> results = new ConcurrentLinkedQueue<>();
 
     @Override
@@ -24,10 +24,10 @@ class UntilAllFinishWithSuccessfulResultsJoiner<T> implements StructuredTaskScop
     }
 }
 
-class C06ParallelStructuredUntilAllFinishWithSuccessfulResults {
+class C06UntilAllFinishOnlySuccessfulResults {
     @SafeVarargs
     static <T> List<T> run(Action<T>... actions) {
-        try (var scope= StructuredTaskScope.open(new UntilAllFinishWithSuccessfulResultsJoiner<T>())) {
+        try (var scope= StructuredTaskScope.open(new UntilAllFinishOnlySuccesfulResultsJoiner<T>())) {
             Arrays.stream(actions)
                     .forEach(action -> scope.fork(action::run));
             var results= scope.join();

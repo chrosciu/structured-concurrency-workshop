@@ -2,7 +2,7 @@ package eu.chrost.workshop;
 
 import java.util.concurrent.StructuredTaskScope;
 
-class C05ParallelStructuredUntilAllFinish {
+class C05UntilAllFinishRegardlessOfResult {
     static <T, U>String run(Action<T> actionOne, Action<U> actionTwo) {
         try (var scope= StructuredTaskScope.open(StructuredTaskScope.Joiner.awaitAll())) {
             StructuredTaskScope.Subtask<T> subtaskOne = scope.fork(() -> actionOne.run());
