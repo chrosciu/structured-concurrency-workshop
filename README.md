@@ -17,9 +17,9 @@ Ambitious participants are encouraged to write unit tests to verify the simulati
 
 ## Documentation
 
-- https://openjdk.org/jeps/505
-- https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.html
-- [slides in PDF - TODO]
+- [JEP-505 - Structured Concurrency](https://openjdk.org/jeps/505)
+- [StructuredTaskScope API](https://download.java.net/java/early_access/loom/docs/api/java.base/java/util/concurrent/StructuredTaskScope.html)
+- [Slides in PDF](./Structured_Concurrency.pdf)
 
 ## Task 1 - Something to snack on :)
 
