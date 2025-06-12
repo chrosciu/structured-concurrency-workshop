@@ -1,10 +1,12 @@
 package eu.chrost.workshop;
 
+import org.slf4j.Logger;
+
 import java.time.Duration;
 import java.util.Objects;
 
 record Action<T>(String name, T result, Duration timeout, boolean failing)  {
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Action.class);
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Action.class);
 
     public Action {
         Objects.requireNonNull(name, "name must not be null");
