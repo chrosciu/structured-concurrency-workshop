@@ -15,6 +15,7 @@ class T01Alice {
             scope.fork(() -> salad.run());
             scope.fork(() -> pizza.run());
             scope.fork(() -> fries.run());
+            //scope.fork(() -> burnedFries.run());
             return scope.join()
                     .map(StructuredTaskScope.Subtask::get)
                     .toList();
@@ -26,5 +27,7 @@ class T01Alice {
     private Action<String> salad = new Action<>("preparing salad", "salad is ready", Duration.ofSeconds(1));
     private Action<String> pizza = new Action<>("preparing pizza", "pizza is ready", Duration.ofSeconds(3));
     private Action<String> fries = new Action<>("preparing fries", "fries are ready", Duration.ofSeconds(2));
+    private Action<String> burnedFries = new Action<>("preparing fries", "fries are ready", Duration.ofSeconds(2), true);
+
 
 }
