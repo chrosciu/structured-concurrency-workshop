@@ -35,4 +35,12 @@ class Utils {
     public static void logError(String message, Throwable throwable) {
         log.error(message, throwable);
     }
+
+    public static void tryRun(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (Exception e) {
+            log.error("Error: ", e);
+        }
+    }
 }
