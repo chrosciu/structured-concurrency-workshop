@@ -14,7 +14,8 @@ class Utils {
             log.info("Sleeping");
             Thread.sleep(duration);
             log.info("Waking up");
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
+            log.error("Sleeping interrupted", e);
             throw new RuntimeException(e);
         }
     }
